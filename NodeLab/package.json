@@ -1,0 +1,30 @@
+{
+  "name": "nodelab",
+  "version": "1.0.0",
+  "description": "package library for nodelab",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaifeem/oregano.git"
+  },
+  "keywords": [
+    "nodelab"
+  ],
+  "author": "Kaifee",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kaifeem/oregano/issues"
+  },
+  "homepage": "https://github.com/kaifeem/oregano#readme",
+  "dependencies": {
+    "express": "^4.16.4",
+    "lodash": "^4.17.11",
+    "mssql": "^4.3.0",
+    "nodemon": "^1.18.9"
+  },
+  "devDependencies": {}
+}
