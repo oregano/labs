@@ -3,15 +3,21 @@ const com = require('./common.js');
 const dialog = require('./dialogue.js')
 const xml = require('@xmpp/xml');
 
+var wit = require('botkit-middleware-witai')({
+    token: 'F4ND2MUPWC7J2DJL6RFKVADLDX2S4TLT'
+});
+
 var controller = Botkit.jabberbot({
     json_file_store: './jabberbot/'
 });
 
+controller.middleware.receive.use(wit.receive);
+
 var bot = controller.spawn({
     client: {
-        jid: 'nexmok@amlin.com',
-        password: 'bEjAsp@2026',
-        host: "SVOIPS0003.amlin.com",
+        jid: 'amy@abc.inc',
+        password: '1234',
+        host: "10.10.20.17",
         port: 5222
     }
 });
@@ -45,74 +51,20 @@ function toUTCDateTimeString(date) {
     return "".concat(yyyy).concat('-').concat(mm).concat('-').concat(dd).concat('T').concat(hh).concat(':').concat(min).concat(':').concat(ss);
 };
 
-//Greetings
-controller.hears(['hello','hi', 'hey', 'hiya', 'salam', 'namaste'], ['direct_mention', 'direct_message', 'message_received'], function (bot, message) {
+controller.on('listening', ['direct_mention', 'direct_message', 'message_received'], wit.hears, function (bot, message) {
 
     bot.startConversation(message, function (err, convo) {
 
         let reply = com.jabfy(message, dialog.greeting(message));
-
-        convo.say(reply);
-
-    });
-});
-
-controller.hears(['how are you','how about you'], ['direct_mention', 'direct_message', 'message_received'], function (bot, message) {
-
-    bot.startConversation(message, function (err, convo) {
-
-        let reply = com.jabfy(message, dialog.hru(message));
-        convo.say(reply);
-    });
-});
-
-controller.hears(['do you know', 'who is'], ['direct_mention', 'direct_message', 'message_received'], function (bot, message) {
-
-    bot.startConversation(message, function (err, convo) {
-
-        let reply = com.jabfy(message, dialog.hru(message));
-        convo.say(reply);
-    });
-});
-
-controller.hears(['batch status'], ['direct_mention', 'direct_message', 'message_received'], function (bot, message) {
-
-    bot.createConversation(message, function (err, convo) {
-
-        // let reply = com.jabfy(message, 'Sure, have you got the batch id with you?');
-
-        let reply = 'Sure, have you got the batch id with you?';
-
-        convo.addMessage({ text: 'Can i have that?' }, 'said_yes');
-        convo.addMessage({ text: 'oh sorry to hear that!' }, 'said_no');
-
-        convo.addQuestion(reply, [{
-            pattern: 'yes',
-            callback: function (response, convo) {
-                convo.gotoThread('said_yes');
-            }
-        },
-        {
-            pattern: 'no',
-            callback: function (resposne, convo) {
-                convo.gotoThread('said_no');
-            }
-        },
-        {
-            default: true,
-            callback: function (response, convo) {
-                convo.gotoThread('bad_response');
-            }
-        }
-        ], {}, 'default');
-
-
-        convo.activate();
+        console.log(message.entities.intent);
+        // console.log('pizza type:' + message.entities.pizza_type);
+        // convo.say(reply);
 
     });
 });
 
-controller.on('conversationStarted', function(bot, convo){
+
+controller.on('conversationStarted', function (bot, convo) {
     console.log('Conversation started with ', convo.context.user);
 });
 

@@ -23,5 +23,13 @@ const accessToken = (() => {
   return process.argv[2];
 })();
 
+const handleMessage = ({entities}) => {
+  console.log(entities)
+  if(entities )
+  console.log(entities.intent[0].value)
+
+
+}
+
 const client = new Wit({accessToken});
-interactive(client);
+interactive(client, handleMessage);

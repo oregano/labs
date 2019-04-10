@@ -24,7 +24,9 @@
     "express": "^4.16.4",
     "lodash": "^4.17.11",
     "mssql": "^4.3.0",
-    "nodemon": "^1.18.9"
+    "node-wit": "^5.0.0",
+    "nodemon": "^1.18.9",
+    "superagent": "^4.1.0"
   },
   "devDependencies": {}
 }
