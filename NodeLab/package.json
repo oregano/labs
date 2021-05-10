@@ -23,7 +23,7 @@
   "dependencies": {
     "debug": "^4.1.1",
     "express": "^4.16.4",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.21",
     "mssql": "^4.3.7",
     "node-wit": "^5.0.0",
     "nodemon": "^1.18.11",
