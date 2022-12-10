@@ -22,7 +22,7 @@
   "homepage": "https://github.com/kaifeem/oregano#readme",
   "dependencies": {
     "debug": "^4.1.1",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "lodash": "^4.17.15",
     "mssql": "^4.3.7",
     "node-wit": "^5.0.0",
